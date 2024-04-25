@@ -1,5 +1,3 @@
-import React from "react";
-
 const Home = () => {
   return (
     <main>
@@ -15,18 +13,18 @@ const Home = () => {
               minHeight: "555px",
             }}
           >
-            <div
-              className="col-lg-6 col-12 text-center text-lg-end p-3"
-              style={{
-                background: "rgba(255, 255, 255, 0.55)",
-                boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.37)",
-                backdropFilter: "blur(5px)",
-                WebkitBackdropFilter: "blur(5px)",
-                borderRadius: "10px",
-                border: "1px solid rgba(255, 255, 255, 0.18)",
-              }}
-            >
-              <h1 className="lead my-3 fs-2 fw-bold p-5">
+            <div className="col-lg-6 col-12 text-center text-lg-end p-3">
+              <h1
+                className="lead my-3 fs-2 fw-bold p-5"
+                style={{
+                  background: "rgba(255, 255, 255, 0.55)",
+                  boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.37)",
+                  backdropFilter: "blur(5px)",
+                  WebkitBackdropFilter: "blur(5px)",
+                  borderRadius: "10px",
+                  border: "1px solid rgba(255, 255, 255, 0.18)",
+                }}
+              >
                 “Teringizga g`amxo`r va yaxshi munosabatda bo'ling. Siz uni
                 butun umringiz davomida har kuni kiyasiz." - Rene Rulo
               </h1>
@@ -281,7 +279,20 @@ const Home = () => {
                 alt="..."
               />
             </div>
-            {/* Additional carousel items go here */}
+            <div className="carousel-item">
+              <img
+                src="./assets/images/3Z8A9522.jpg"
+                className="d-block w-100"
+                alt="..."
+              />
+            </div>
+            <div className="carousel-item">
+              <img
+                src="./assets/images/3Z8A9552.jpg"
+                className="d-block w-100"
+                alt="..."
+              />
+            </div>
           </div>
           <button
             className="carousel-control-prev"

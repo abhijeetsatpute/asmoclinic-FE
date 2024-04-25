@@ -1,5 +1,3 @@
-import { useLocation } from "react-router-dom";
-
 const NavigationBar = () => {
   const currentPath = window.location.pathname;
 
