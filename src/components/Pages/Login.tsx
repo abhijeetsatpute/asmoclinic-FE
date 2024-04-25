@@ -7,11 +7,7 @@ import {
   Box,
   Avatar,
   TextField,
-  FormControlLabel,
-  Checkbox,
   Button,
-  Grid,
-  Link,
 } from "@mui/material";
 import * as React from "react";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
@@ -34,14 +30,17 @@ export default function SignIn() {
       username: data.get("username"),
       password: data.get("password"),
     };
+    if (!loginUser.username || !loginUser.password) {
+      return toast.error("Enter Username & password", {
+        style: {
+          width: "2000px",
+        },
+      });
+    }
     try {
-      const res = await axios.post(
-        `http://localhost:5000/api/v1/users/login`,
-        loginUser,
-        {
-          withCredentials: true, // without this cookies wont be set
-        }
-      );
+      const res = await axios.post(Server(`/api/v1/users/login`), loginUser, {
+        withCredentials: true, // without this cookies wont be set
+      });
       if (res.status === 200) {
         toast.success("Logged in");
         //set global set of adminLogged to true
@@ -50,7 +49,7 @@ export default function SignIn() {
         localStorage.setItem("Logged", "1");
 
         setAdminLogged(true);
-        return navigate("/");
+        return navigate("/admin");
       }
     } catch (error) {
       toast.error("Invalid Login");
@@ -63,7 +62,7 @@ export default function SignIn() {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 4,
+            marginTop: 12,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -102,10 +101,6 @@ export default function SignIn() {
               id="password"
               autoComplete="current-password"
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
             <Button
               type="submit"
               fullWidth
@@ -114,18 +109,6 @@ export default function SignIn() {
             >
               Sign In
             </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href={`${Server}/api-docs`} variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href={`${Server}/api-docs`} variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
           </Box>
         </Box>
       </Container>

@@ -1,5 +1,9 @@
+import { Button } from "@mui/material";
+import { Link, useLocation } from "react-router-dom";
+
 const NavigationBar = () => {
-  const currentPath = window.location.pathname;
+  const { pathname: currentPath } = useLocation();
+  console.log(currentPath);
 
   return (
     <nav
@@ -10,7 +14,7 @@ const NavigationBar = () => {
       }}
     >
       <div className="container d-flex justify-content-between">
-        <a href="index.html">
+        <Button to={"/"} component={Link}>
           <img
             className="navbar-brand"
             src="assets/images/logo.png"
@@ -19,7 +23,7 @@ const NavigationBar = () => {
             style={{ maxWidth: "200px", width: "100vw" }}
             alt="logo"
           />
-        </a>
+        </Button>
         <button
           className="navbar-toggler"
           type="button"
@@ -34,52 +38,52 @@ const NavigationBar = () => {
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <ul className="navbar-nav text-center d-flex ms-auto align-items-center">
             <li className="nav-item">
-              <a
+              <Link
+                to="/"
                 className={`nav-link ${currentPath === "/" ? "active" : ""}`}
-                href="/"
               >
                 Asosiy
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a
+              <Link
+                to={"/team"}
                 className={`nav-link ${
                   currentPath === "/team" ? "active" : ""
                 }`}
-                href="/team"
               >
                 Jamoa
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a
+              <Link
                 className={`nav-link ${
                   currentPath === "/gallery" ? "active" : ""
                 }`}
-                href="/gallery"
+                to="/gallery"
               >
                 Galereya
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a
+              <Link
                 className={`nav-link ${
                   currentPath === "/results" ? "active" : ""
                 }`}
-                href="/results"
+                to="/results"
               >
                 Natijalar
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a
+              <Link
                 className={`nav-link ${
                   currentPath === "/about" ? "active" : ""
                 }`}
-                href="/about"
+                to="/about"
               >
                 Biz haqimizda
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
               <a className="nav-link " href="./../ru/index.html">

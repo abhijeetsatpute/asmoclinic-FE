@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -47,34 +48,39 @@ const Footer = () => {
             <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
               <ul className="navbar-nav ">
                 <li className="">
-                  <a className="nav-link" href="/">
+                  <Link className="nav-link" to="/">
                     Asosiy
-                  </a>
+                  </Link>
                 </li>
                 <li className="">
-                  <a className="nav-link" href="team">
+                  <Link className="nav-link" to="team">
                     Jamoa
-                  </a>
+                  </Link>
                 </li>
                 <li className="">
-                  <a className="nav-link" href="gallery">
+                  <Link className="nav-link" to="gallery">
                     Galereya
-                  </a>
+                  </Link>
                 </li>
                 <li className="">
-                  <a className="nav-link" href="services">
+                  <Link className="nav-link" to="services">
                     Xizmatlar
-                  </a>
+                  </Link>
                 </li>
                 <li className="">
-                  <a className="nav-link" href="results">
+                  <Link className="nav-link" to="results">
                     Natijalar
-                  </a>
+                  </Link>
                 </li>
                 <li className="">
-                  <a className="nav-link" href="about">
+                  <Link className="nav-link" to="about">
                     Biz haqimizda
-                  </a>
+                  </Link>
+                </li>
+                <li className="">
+                  <Link className="nav-link" to="login">
+                    Login
+                  </Link>
                 </li>
               </ul>
             </div>
