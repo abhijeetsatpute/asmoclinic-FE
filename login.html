@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="uz">
+  <%- include('partials/head'); %>
+
+  <body class="d-flex justify-content-center align-items-center">
+    <div class="loader__wrapper">
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+
+    <%- include('partials/navbar'); %>
+
+    <main>
+      <form
+        class="form d-flex justify-content-center align-items-center gap-2 flex-wrap"
+      >
+        <label class="d-flex flex-column text-center gap-2">
+          <span class="text-primary">Login</span>
+          <input type="text" placeholder="Login" class="form-control login" />
+        </label>
+        <label class="d-flex flex-column text-center gap-2">
+          <span class="text-primary">Password</span>
+          <input
+            type="text"
+            placeholder="password"
+            class="form-control password"
+          />
+        </label>
+        <button class="btn w-50 text-center btn-outline-primary" type="submit">
+          Submit
+        </button>
+      </form>
+
+      <script>
+        if (localStorage.getItem("username")) {
+          window.location.href == "index.html";
+        }
+
+        let login = document.querySelector(".login");
+        let password = document.querySelector(".password");
+        let form = document.querySelector(".form");
+
+        form.addEventListener("submit", function (evt) {
+          evt.preventDefault();
+
+          let userName = "1";
+          let passWord = "2";
+          2;
+
+          if (login.value && password.value) {
+            if (login.value == userName && password.value == passWord) {
+              console.log("Success");
+              window.location.href = "index.html";
+              localStorage.setItem(login.value, password.value);
+            } else {
+              console.log("Fail");
+            }
+          }
+        });
+      </script>
+    </main>
+  </body>
+</html>
