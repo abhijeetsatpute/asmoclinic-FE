@@ -3,7 +3,6 @@ import { Outlet, Navigate, useRoutes } from "react-router-dom";
 import NavigationBar from "../components/NavigationBar";
 import Footer from "../components/Footer";
 import TelegramButton from "../components/TelegramButton";
-import Loader from "../components/Loader";
 import AdminDashboard from "../components/Pages/AdminDashboard";
 import DoctorAdd from "../components/Doctor/DoctorAdd";
 import AllDoctors from "../components/Doctor/AllDoctors";
@@ -12,6 +11,7 @@ import AllResults from "../components/Results/AllResults";
 import AddResult from "../components/Results/AddResult";
 import DeleteResult from "../components/Results/DeleteResult";
 import DoctorDetail from "../components/Doctor/DoctorDetail";
+import { CircularProgress } from "@mui/material";
 
 export const HomePage = lazy(() => import("../components/Pages/Home"));
 export const TeamPage = lazy(() => import("../components/Pages/Team"));
@@ -84,7 +84,6 @@ export default function Router() {
 function DefaultLayout({ children }: any) {
   return (
     <div>
-      <Loader />
       <NavigationBar />
       {children}
       <Footer />

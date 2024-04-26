@@ -30,37 +30,66 @@ const AllDoctors = () => {
 
   return (
     <div>
-      <h2>All Doctors count : {doctorsCount}</h2>
-      <div
-        style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
+      <Card
+        sx={{
+          borderRadius: "20px",
+          bgcolor: "#e7f1f1",
+        }}
       >
-        {doctors.map((doctor: any) => (
-          <Card
-            key={doctor.id}
-            style={{ width: 300, margin: 10, borderRadius: 10 }}
-          >
-            <CardContent>
-              <Box display="flex" justifyContent="center">
-                <Avatar
-                  src={doctor.image}
-                  variant="circular"
-                  sx={{ width: 120, height: 120 }}
-                />
-              </Box>
-              <Typography variant="h5" component="div" align="center">
-                {doctor.fullname}
-              </Typography>
-              <Typography variant="body2" color="text.secondary" align="center">
-                {doctor.occupation}
-              </Typography>
-              <Typography variant="body2" color="text.secondary" align="center">
-                {doctor.specialization}
-              </Typography>
-              {/* Add more details as needed */}
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+        <Typography
+          variant="h4"
+          mb={1}
+          p={1}
+          fontWeight={600}
+          bgcolor={"#6aa9"}
+          textAlign={"center"}
+          color={"whitesmoke"}
+        >
+          All Doctors count : {doctorsCount}
+        </Typography>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+          }}
+        >
+          {doctors.map((doctor: any) => (
+            <Card
+              key={doctor.id}
+              style={{ width: 300, margin: 10, borderRadius: 10 }}
+            >
+              <CardContent>
+                <Box display="flex" justifyContent="center">
+                  <Avatar
+                    src={doctor.image}
+                    variant="circular"
+                    sx={{ width: 120, height: 120 }}
+                  />
+                </Box>
+                <Typography variant="h5" component="div" align="center">
+                  {doctor.fullname}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  align="center"
+                >
+                  {doctor.occupation}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  align="center"
+                >
+                  {doctor.specialization}
+                </Typography>
+                {/* Add more details as needed */}
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </Card>
     </div>
   );
 };

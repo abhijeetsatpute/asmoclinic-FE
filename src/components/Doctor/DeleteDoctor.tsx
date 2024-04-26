@@ -74,62 +74,92 @@ const AllDoctors = () => {
 
   return (
     <div>
-      <h2>Delete Doctors</h2>
-      <div
-        style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
+      <Card
+        sx={{
+          borderRadius: "20px",
+          bgcolor: "#e7f1f1",
+        }}
       >
-        {doctors.map((doctor: any) => (
-          <Card
-            key={doctor.id}
-            style={{ width: 300, margin: 10, borderRadius: 10 }}
-          >
-            <CardContent>
-              <Box display="flex" justifyContent="center">
-                <Avatar
-                  src={doctor.image}
-                  variant="circular"
-                  sx={{ width: 120, height: 120 }}
-                />
-              </Box>
-              <Typography variant="h5" component="div" align="center">
-                {doctor.fullname}
-              </Typography>
-              <Typography variant="body2" color="text.secondary" align="center">
-                {doctor.occupation}
-              </Typography>
-              <Typography variant="body2" color="text.secondary" align="center">
-                {doctor.specialization}
-              </Typography>
-              <Box mt={2} display="flex" justifyContent="center">
-                <Button
-                  variant="contained"
-                  color="error"
-                  onClick={() => handleDelete(doctor)}
+        <Typography
+          variant="h4"
+          mb={1}
+          p={1}
+          fontWeight={600}
+          bgcolor={"#6aa9"}
+          textAlign={"center"}
+          color={"whitesmoke"}
+          fontFamily={"monospace"}
+        >
+          All Doctors count : <b style={{ color: "black" }}>{doctors.length}</b>
+        </Typography>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+          }}
+        >
+          {doctors.map((doctor: any) => (
+            <Card
+              key={doctor.id}
+              style={{ width: 300, margin: 10, borderRadius: 10 }}
+            >
+              <CardContent>
+                <Box display="flex" justifyContent="center">
+                  <Avatar
+                    src={doctor.image}
+                    variant="circular"
+                    sx={{ width: 120, height: 120 }}
+                  />
+                </Box>
+                <Typography variant="h5" component="div" align="center">
+                  {doctor.fullname}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  align="center"
                 >
-                  Delete
-                </Button>
-              </Box>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-      <Dialog open={deleteConfirmationOpen} onClose={cancelDelete}>
-        <DialogTitle>Confirm Deletion</DialogTitle>
-        <DialogContent>
-          <Typography width={"100%"}>
-            Are you sure you want to delete{" "}
-            <b>{selectedDoctor && selectedDoctor?.fullname}</b>?
-          </Typography>
-        </DialogContent>
-        <DialogActions>
-          <Button variant="outlined" onClick={cancelDelete}>
-            Cancel
-          </Button>
-          <Button variant="outlined" onClick={confirmDelete} color="error">
-            Delete
-          </Button>
-        </DialogActions>
-      </Dialog>
+                  {doctor.occupation}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  align="center"
+                >
+                  {doctor.specialization}
+                </Typography>
+                <Box mt={2} display="flex" justifyContent="center">
+                  <Button
+                    variant="contained"
+                    color="error"
+                    onClick={() => handleDelete(doctor)}
+                  >
+                    Delete
+                  </Button>
+                </Box>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+        <Dialog open={deleteConfirmationOpen} onClose={cancelDelete}>
+          <DialogTitle>Confirm Deletion</DialogTitle>
+          <DialogContent>
+            <Typography width={"100%"}>
+              Are you sure you want to delete{" "}
+              <b>{selectedDoctor && selectedDoctor?.fullname}</b>?
+            </Typography>
+          </DialogContent>
+          <DialogActions>
+            <Button variant="outlined" onClick={cancelDelete}>
+              Cancel
+            </Button>
+            <Button variant="outlined" onClick={confirmDelete} color="error">
+              Delete
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </Card>
     </div>
   );
 };

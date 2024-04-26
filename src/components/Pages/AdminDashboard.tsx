@@ -14,6 +14,7 @@ import { Server } from "../../util/url";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { Divider } from "@mui/material";
 
 const drawerWidth = 240;
 
@@ -60,6 +61,11 @@ export default function ResponsiveDrawer({ children }: any) {
           </a>
         }
       />
+      <Divider />
+
+      <Typography variant="h5" p={1}>
+        Overview
+      </Typography>
 
       <List>
         <CollapsibleGroup
@@ -85,7 +91,7 @@ export default function ResponsiveDrawer({ children }: any) {
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
-          backgroundColor: "darkgray",
+          backgroundColor: "#6aaf",
         }}
       >
         <Toolbar>
@@ -98,7 +104,12 @@ export default function ResponsiveDrawer({ children }: any) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
+          <Typography
+            variant="h4"
+            noWrap
+            component="div"
+            fontFamily={"monospace"}
+          >
             Admin Dashboard
           </Typography>
           <IconButton
