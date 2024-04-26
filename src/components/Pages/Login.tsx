@@ -22,6 +22,16 @@ import Logo from "../../../public/assets/images/logo.png";
 const defaultTheme = createTheme();
 
 export default function SignIn() {
+  React.useEffect(() => {
+    // Retrieve data from local storage
+    const storedData = localStorage.getItem("User");
+
+    // If data exists
+    if (storedData) {
+      navigate("/Admin");
+    }
+  }, []);
+
   const navigate = useNavigate();
   const setAdminLogged = useAuthStore((state: any) => state.setAdminLogged);
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -45,9 +55,8 @@ export default function SignIn() {
       if (res.status === 200) {
         toast.success("Logged in");
         //set global set of adminLogged to true
-        console.log(res.data);
+
         localStorage.setItem("User", JSON.stringify(res.data));
-        localStorage.setItem("Logged", "1");
 
         setAdminLogged(true);
         return navigate("/admin");

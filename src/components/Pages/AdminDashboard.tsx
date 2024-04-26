@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -23,6 +23,16 @@ export default function ResponsiveDrawer({ children }: any) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
 
+  useEffect(() => {
+    // Retrieve data from local storage
+    const storedData = localStorage.getItem("User");
+
+    // If data exists, update state
+    if (!storedData) {
+      navigate("/login");
+    }
+  }, []);
+
   const handleDrawerClose = () => {
     setIsClosing(true);
     setMobileOpen(false);
@@ -44,6 +54,7 @@ export default function ResponsiveDrawer({ children }: any) {
         withCredentials: true,
       });
       if (response.status == 200) {
+        localStorage.removeItem("User");
         toast.success("Logged out");
         return navigate("/");
       }
