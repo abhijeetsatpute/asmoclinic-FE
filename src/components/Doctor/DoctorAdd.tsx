@@ -78,6 +78,7 @@ const SimpleForm: React.FC = () => {
       formData.append("fullname", docData.fullname);
       formData.append("occupation", docData.occupation);
       formData.append("image", docData.image);
+      //  TODO fix
       formData.append("info", JSON.stringify(docData.info));
       const response = await axios.post(
         "http://localhost:5000/api/v1/doctors/",

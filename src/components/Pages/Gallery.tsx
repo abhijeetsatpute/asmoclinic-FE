@@ -1,7 +1,13 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import MUILoader from "../MUILoader";
+import toast from "react-hot-toast";
+import { Server } from "../../util/url";
 
 const Gallery = () => {
   const [fullPageImage, setFullPageImage] = useState("");
+  const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const handleClick = (src: any) => {
     setFullPageImage(src);
@@ -11,51 +17,45 @@ const Gallery = () => {
     setFullPageImage("");
   };
 
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const response = await axios.get(Server("/api/v1/gallery"));
+        setImages(response.data.images);
+        setLoading(false);
+      } catch (error) {
+        toast.error("Error fetching gallery images");
+        console.error("Error fetching doctors:", error);
+        setLoading(true);
+      }
+    };
+
+    fetchImages();
+  }, []);
+
+  const renderImageList = () => {
+    return images.map((img: any) => {
+      return (
+        <img
+          key={img.id}
+          className="card rounded-4"
+          style={{ maxWidth: "100%" }}
+          src={img.path}
+          alt="zoom"
+          onClick={() => handleClick(img.path)}
+        />
+      );
+    });
+  };
+
+  if (loading) {
+    return <MUILoader />;
+  }
+
   return (
     <main className="container">
       <div className="gallery d-flex mx-auto flex-column">
-        <img
-          className="card rounded-4"
-          style={{ maxWidth: "100%" }}
-          src="assets/images/gallery/gallery-1.webp"
-          alt="zoom"
-          onClick={() => handleClick("assets/images/gallery/gallery-1.webp")}
-        />
-        <img
-          className="card rounded-4"
-          style={{ maxWidth: "100%" }}
-          src="assets/images/gallery/gallery-2.webp"
-          alt="zoom"
-          onClick={() => handleClick("assets/images/gallery/gallery-2.webp")}
-        />
-        <img
-          className="card rounded-4"
-          style={{ maxWidth: "100%" }}
-          src="assets/images/gallery/gallery-3.webp"
-          alt="zoom"
-          onClick={() => handleClick("assets/images/gallery/gallery-3.webp")}
-        />
-        <img
-          className="card rounded-4"
-          style={{ maxWidth: "100%" }}
-          src="assets/images/gallery/gallery-4.webp"
-          alt="zoom"
-          onClick={() => handleClick("assets/images/gallery/gallery-4.webp")}
-        />
-        <img
-          className="card rounded-4"
-          style={{ maxWidth: "100%" }}
-          src="assets/images/gallery/gallery-5.webp"
-          alt="zoom"
-          onClick={() => handleClick("assets/images/gallery/gallery-5.webp")}
-        />
-        <img
-          className="card rounded-4"
-          style={{ maxWidth: "100%" }}
-          src="assets/images/gallery/gallery-6.webp"
-          alt="zoom"
-          onClick={() => handleClick("assets/images/gallery/gallery-6.webp")}
-        />
+        {renderImageList()}
       </div>
 
       {fullPageImage && (
