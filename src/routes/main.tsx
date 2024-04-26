@@ -12,6 +12,9 @@ import AddResult from "../components/Results/AddResult";
 import DeleteResult from "../components/Results/DeleteResult";
 import DoctorDetail from "../components/Doctor/DoctorDetail";
 import { CircularProgress } from "@mui/material";
+import AllImages from "../components/Results/Gallery/AllImages";
+import AddImage from "../components/Results/Gallery/AddImage";
+import DeleteImage from "../components/Results/Gallery/DeleteImage";
 
 export const HomePage = lazy(() => import("../components/Pages/Home"));
 export const TeamPage = lazy(() => import("../components/Pages/Team"));
@@ -61,6 +64,9 @@ export default function Router() {
         { path: "results/all", element: <AllResults /> },
         { path: "results/add", element: <AddResult /> },
         { path: "results/delete", element: <DeleteResult /> },
+        { path: "gallery/all", element: <AllImages /> },
+        { path: "gallery/add", element: <AddImage /> },
+        { path: "gallery/delete", element: <DeleteImage /> },
       ],
     },
     {

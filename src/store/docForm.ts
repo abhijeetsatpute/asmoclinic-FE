@@ -21,8 +21,6 @@ const useDocFormStore = create((set) => ({
   setOccupation: (occupation: string) =>
     set((state: any) => ({ docData: { ...state.docData, occupation } })),
   setImage: (image: any) => {
-    console.log("from store", image);
-
     set((state: any) => ({ docData: { ...state.docData, image } }));
   },
   setBirthday: (date: string) =>

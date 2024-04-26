@@ -5,7 +5,7 @@ import Loader from "./components/Loader";
 function App() {
   return (
     <>
-      <Loader />
+      {/* <Loader /> */}
       <Toaster position="bottom-center" reverseOrder={false} />
       <Router />
     </>

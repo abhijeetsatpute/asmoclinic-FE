@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Server } from "../../util/url";
 import { Avatar, Card, CardContent, Typography, Box } from "@mui/material";
+import MUILoader from "../MUILoader";
+import toast from "react-hot-toast";
 
 const AllDoctors = () => {
   const [doctors, setDoctors] = useState([]);
@@ -16,8 +18,9 @@ const AllDoctors = () => {
         setDoctorsCount(response.data.count);
         setLoading(false);
       } catch (error) {
+        toast.error("Error fetching doctors");
         console.error("Error fetching doctors:", error);
-        setLoading(false);
+        setLoading(true);
       }
     };
 
@@ -25,7 +28,7 @@ const AllDoctors = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <MUILoader />;
   }
 
   return (

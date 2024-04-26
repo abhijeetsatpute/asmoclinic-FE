@@ -57,7 +57,11 @@ export default function ResponsiveDrawer({ children }: any) {
       <Toolbar
         children={
           <a href="/admin">
-            <img src="assets/images/logo.png" alt="zoom" height="40rem" />
+            <img
+              src="../../assets/images/logo.png"
+              alt="Asmo Clinic"
+              height="40rem"
+            />
           </a>
         }
       />
@@ -77,6 +81,13 @@ export default function ResponsiveDrawer({ children }: any) {
       <List>
         <CollapsibleGroup
           groupName="Results"
+          items={["See All", "Add", "Delete"]}
+        />
+      </List>
+
+      <List>
+        <CollapsibleGroup
+          groupName="Gallery"
           items={["See All", "Add", "Delete"]}
         />
       </List>
