@@ -1,4 +1,57 @@
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { Server } from "../../util/url";
+import { Link } from "react-router-dom";
+import { Box } from "@mui/material";
+
 const Home = () => {
+  const [doctors, setDoctors] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchDoctors = async () => {
+      try {
+        const response = await axios.get(Server("/api/v1/doctors"));
+        setDoctors(response.data.doctors);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching doctors:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchDoctors();
+  }, []);
+
+  const renderDoctorsList = () => {
+    return doctors.map((doc: any) => {
+      return (
+        <Box height={"150%"}>
+          <Link
+            className="swiper-slide m-2 text-reset text-decoration-none"
+            to={`/team/${doc.id}`}
+          >
+            <img
+              className="img"
+              src={`${Server(doc?.image)}`}
+              alt="img"
+              style={{
+                borderRadius: "20px",
+                objectFit: "cover",
+                verticalAlign: "bottom",
+                height: "100% ",
+                width: "100%",
+                position: "static",
+              }}
+            />
+            <div className="name">{doc?.fullname}</div>
+            <div className="title">{doc?.occupation}</div>
+          </Link>
+        </Box>
+      );
+    });
+  };
+
   return (
     <main>
       <section className="hero">
@@ -122,139 +175,7 @@ const Home = () => {
         </div>
       </section>
       <section className="container my-5">
-        <div className="swiper">
-          <a
-            className="swiper-slide m-2 text-reset text-decoration-none"
-            href=""
-          >
-            <img
-              className="img"
-              src="./assets/images/avatar/team-1.jpg"
-              alt="img"
-              width="150"
-              height=""
-            />
-            <div className="name">Bahrom Ilamanovich</div>
-            <div className="title">
-              Tibbiyot fanlari nomzodi dotsent oliy toifali vrach
-              dermatovenerolog
-            </div>
-          </a>
-          <a
-            className="swiper-slide m-2 text-reset text-decoration-none"
-            href=""
-          >
-            <img
-              className="img"
-              src="./assets/images/avatar/team-2.jpg"
-              alt="img"
-              width="150"
-              height=""
-            />
-            <div className="name">Murod Abdujabborovich</div>
-            <div className="title">Oliy toifali shifokor dermatovenerolog</div>
-          </a>
-          <a
-            className="swiper-slide m-2 text-reset text-decoration-none"
-            href=""
-          >
-            <img
-              className="img"
-              src="./assets/images/avatar/team-8.jpg"
-              alt="img"
-              width="150"
-              height=""
-            />
-            <div className="name">Evelina Vladimirovna</div>
-            <div className="title">
-              2-toifali shifokor dermatovenerolog dermatoskopist
-            </div>
-          </a>
-          <a
-            className="swiper-slide m-2 text-reset text-decoration-none"
-            href=""
-          >
-            <img
-              className="img"
-              src="./assets/images/avatar/team-3.jpg"
-              alt="img"
-              width="150"
-              height=""
-            />
-            <div className="name">Javohir Sharobidinovich</div>
-            <div className="title">Vrach dermatavenerolog</div>
-          </a>
-          <a
-            className="swiper-slide m-2 text-reset text-decoration-none"
-            href=""
-          >
-            <img
-              className="img"
-              src="./assets/images/avatar/team-10.jpg"
-              alt="img"
-              width="150"
-              height=""
-            />
-            <div className="name">Shahrizoda Bahodirovna</div>
-            <div className="title">Bolalar ginekologi</div>
-          </a>
-          <a
-            className="swiper-slide m-2 text-reset text-decoration-none"
-            href="./team/team-4.html"
-          >
-            <img
-              className="img"
-              src="./assets/images/avatar/team-4.jpg"
-              alt="img"
-              width="150"
-              height=""
-            />
-            <div className="name">Barno Yo`ldashevna</div>
-            <div className="title">Oliy toifali pediatr</div>
-          </a>
-          <a
-            className="swiper-slide m-2 text-reset text-decoration-none"
-            href=""
-          >
-            <img
-              className="img"
-              src="./assets/images/avatar/team-6.jpg"
-              alt="img"
-              width="150"
-              height=""
-            />
-            <div className="name">Malika Axmadjonovna</div>
-            <div className="title">UTT shifokori</div>
-          </a>
-          <a
-            className="swiper-slide m-2 text-reset text-decoration-none"
-            href=""
-          >
-            <img
-              className="img"
-              src="./assets/images/avatar/team-7.jpg"
-              alt="img"
-              width="150"
-              height=""
-            />
-            <div className="name">Suhrob Saidaxmatovich</div>
-            <div className="title">Vrach dermatavenerolog</div>
-          </a>
-          <a
-            className="swiper-slide m-2 text-reset text-decoration-none"
-            href=""
-          >
-            <img
-              className="img"
-              src="./assets/images/avatar/team-9.jpg"
-              alt="img"
-              width="150"
-              height=""
-            />
-            <div className="name">Imil Ilnurovich</div>
-            <div className="title">Vrach dermatavenerolog</div>
-          </a>
-        </div>
+        <div className="swiper">{renderDoctorsList()}</div>
         <a
           type="button"
           href="./team"

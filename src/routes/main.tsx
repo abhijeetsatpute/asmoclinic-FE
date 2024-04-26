@@ -3,9 +3,15 @@ import { Outlet, Navigate, useRoutes } from "react-router-dom";
 import NavigationBar from "../components/NavigationBar";
 import Footer from "../components/Footer";
 import TelegramButton from "../components/TelegramButton";
-import { Toaster } from "react-hot-toast";
 import Loader from "../components/Loader";
 import AdminDashboard from "../components/Pages/AdminDashboard";
+import DoctorAdd from "../components/Doctor/DoctorAdd";
+import AllDoctors from "../components/Doctor/AllDoctors";
+import DeleteDoctor from "../components/Doctor/DeleteDoctor";
+import AllResults from "../components/Results/AllResults";
+import AddResult from "../components/Results/AddResult";
+import DeleteResult from "../components/Results/DeleteResult";
+import DoctorDetail from "../components/Doctor/DoctorDetail";
 
 export const HomePage = lazy(() => import("../components/Pages/Home"));
 export const TeamPage = lazy(() => import("../components/Pages/Team"));
@@ -33,6 +39,7 @@ export default function Router() {
         { path: "results", element: <ResultPage /> },
         { path: "gallery", element: <GalleryPage /> },
         { path: "about", element: <AboutPage /> },
+        { path: "team/:id", element: <DoctorDetail /> }, // Add route for TeamPage
       ],
     },
     {
@@ -46,12 +53,14 @@ export default function Router() {
         </Suspense>
       ),
       children: [
-        { element: <HomePage />, index: true },
-        { path: "team", element: <TeamPage /> }, // Add route for TeamPage
-        { path: "gallery", element: <GalleryPage /> }, // Add route for GalleryPage
-        { path: "results", element: <ResultPage /> },
-        { path: "gallery", element: <GalleryPage /> },
-        { path: "about", element: <AboutPage /> },
+        // { element: <Overview />, index: true },
+        { path: "doctors/add", element: <DoctorAdd /> }, // Add route for TeamPage
+        { path: "doctors/all", element: <AllDoctors /> }, // Add route for TeamPage
+        { path: "doctors/delete", element: <DeleteDoctor /> }, // Add route for TeamPage
+        // { path: "blog", element: <BlogView /> }, // Add route for GalleryPage
+        { path: "results/all", element: <AllResults /> },
+        { path: "results/add", element: <AddResult /> },
+        { path: "results/delete", element: <DeleteResult /> },
       ],
     },
     {
@@ -75,23 +84,6 @@ export default function Router() {
 function DefaultLayout({ children }: any) {
   return (
     <div>
-      <Toaster
-        containerStyle={{
-          bottom: 100,
-        }}
-        position="bottom-center"
-        reverseOrder={false}
-        toastOptions={{
-          style: {
-            // border: "1px solid #713200",
-            padding: "16px",
-            // color: "#713200",
-            fontWeight: 600,
-            height: "20%",
-            width: "20%",
-          },
-        }}
-      />
       <Loader />
       <NavigationBar />
       {children}

@@ -3,7 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 
 const NavigationBar = () => {
   const { pathname: currentPath } = useLocation();
-  console.log(currentPath);
 
   return (
     <nav

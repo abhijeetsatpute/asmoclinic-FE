@@ -16,6 +16,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import useAuthStore from "../../store/authStore";
+import Logo from "../../../public/assets/images/logo.png";
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
@@ -69,11 +70,9 @@ export default function SignIn() {
             marginBottom: 6,
           }}
         >
-          <Avatar sx={{ bgcolor: "#1976D2" }}>
-            <AdminPanelSettingsIcon scale={3} />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
+          <img src="assets/images/logo.png" alt="zoom" height="95" />
+          <Typography component="h1" variant="h2" fontWeight={900}>
+            ADMIN
           </Typography>
           <Box
             component="form"
